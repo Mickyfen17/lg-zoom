@@ -43,10 +43,10 @@
     Zoom.prototype.init = function() {
 
         var _this = this;
-        var zoomIcons = '<span id="lg-zoom-in" class="lg-icon"></span><span id="lg-zoom-out" class="lg-icon"></span>';
+        var zoomIcons = '<span id="lg-zoom-in" class="lg-icon" role="button" aria-label="zoom in" tabindex="0"></span><span id="lg-zoom-out" class="lg-icon" role="button" aria-label="zoom out" tabindex="0"></span>';
 
         if (_this.core.s.actualSize) {
-            zoomIcons += '<span id="lg-actual-size" class="lg-icon"></span>';
+            zoomIcons += '<span id="lg-actual-size" class="lg-icon" role="button" aria-label="actual size" tabindex="0"></span>';
         }
 
         if (_this.core.s.useLeftForZoom) {
@@ -197,21 +197,21 @@
             zoom(scale);
         });
 
-        $('#lg-zoom-out').on('click.lg', function() {
+        $('#lg-zoom-out').on('click.lg keypress.lg', function() {
             if (_this.core.$outer.find('.lg-current .lg-image').length) {
                 scale -= _this.core.s.scale;
                 callScale();
             }
         });
 
-        $('#lg-zoom-in').on('click.lg', function() {
+        $('#lg-zoom-in').on('click.lg keypress.lg', function() {
             if (_this.core.$outer.find('.lg-current .lg-image').length) {
                 scale += _this.core.s.scale;
                 callScale();
             }
         });
 
-        $('#lg-actual-size').on('click.lg', function(event) {
+        $('#lg-actual-size').on('click.lg keypress.lg', function(event) {
             actualSize(event, _this.core.$slide.eq(_this.core.index).find('.lg-image'), _this.core.index, true);
         });
 
